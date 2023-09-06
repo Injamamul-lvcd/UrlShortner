@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "533ae9bb-2d4a-4032-8de8-ca1773e89b2b",
+		"name": "url_shortner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28368606"
+	},
+	"item": [
+		{
+			"name": "generatURL",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"longUrl\": \"https://www.facebook.com/\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/shorten",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"shorten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9090/9sF8KI5tf",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/9sF8KI5tf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"9sF8KI5tf"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
