@@ -1,28 +1,23 @@
 const port = process.env.REST_PORT;
 const responseLib=require('../libs/responseLib')
 const shortid=require('shortid');
-//import urlExist from "url-exist"
 const {linkExists} =require('link-exists');
-//creating shortURL using shortid
+
+
 let createShortURL = async(req,res)=>{
     try{
         const {con}=require('../../www/db/db')
-        //const urlExist=require('url-exist')
         const longUrl=req.body.longUrl;
         if(await linkExists(longUrl)){
-          console.log(longUrl)
-        //Check if the long URL already exists in the database
           const checkSql = 'SELECT short_code FROM urls WHERE long_url = ?';
           con.query(checkSql, [longUrl], (checkErr, checkResults) => {
           if(checkErr){
             throw new Error(checkErr);
           }else if(checkResults.length > 0){
-        // URL already exists, return the existing short URL
           const existingShortCode = checkResults[0].short_code;
           const shortUrl = `http://localhost:${port}/${existingShortCode}`;
           res.status(200).send(responseLib.generate(false,"This is your short URL",shortUrl));
           }else{
-          // URL doesn't exist, proceed with shortening
           const shortCode = shortid.generate(); 
           const insertSql = 'INSERT INTO urls (long_url, short_code) VALUES (?, ?)';
           con.query(insertSql, [longUrl, shortCode], (insertErr, insertResult) => {
